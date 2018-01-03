@@ -3,7 +3,7 @@ var plugins = require('restify-plugins');
 var logger = require('morgan');
 
 const server = restify.createServer({
-  name: 'mock-server',
+  name: 'json-file-api',
   version: '1.0.0'
 });
 server.use(plugins.acceptParser(server.acceptable));
