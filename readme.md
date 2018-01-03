@@ -1,6 +1,6 @@
 
 ## Usage
-1. Add routes to `app.js` after the `// ADD ROUTES HERE` comment.
+1. Add routes to `app.js` after the [`// ADD ROUTES HERE`](https://github.com/zvakanaka/json-file-api/blob/master/app.js#L30) comment.
 2. Add JSON file(s).
 3. `npm start`
 
