@@ -1,7 +1,8 @@
 
 ## Usage
 1. Add routes to `app.js` before the last line.
-2. `npm start`
+2. Add JSON file(s).
+3. `npm start`
 
 ## Examples
 ```js
