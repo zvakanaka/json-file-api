@@ -1,6 +1,6 @@
 
 ## Usage
-1. Add routes to `app.js` before the last line.
+1. Add routes to `app.js` after the `// ADD ROUTES HERE` comment.
 2. Add JSON file(s).
 3. `npm start`
 
