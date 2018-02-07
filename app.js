@@ -1,6 +1,7 @@
-var restify = require('restify');
-var plugins = require('restify-plugins');
-var logger = require('morgan');
+const restify = require('restify');
+const plugins = require('restify-plugins');
+const logger = require('morgan');
+const fs = require('fs');
 
 const server = restify.createServer({
   name: 'json-file-api',
@@ -21,9 +22,14 @@ server.use(logger('dev'));
 function addRoute(path, method = 'GET', inputFile = `./fixtures${path}.json`) {
   server[method.toLowerCase()](path, function (req, res, next) {
     res.setHeader('Content-Type', 'application/json');
-    let jsonFile = require(inputFile);
-    res.json(jsonFile);
-    return next();
+    fs.readFile(inputFile, 'utf8', function (err, data) {
+      if (err) {
+        res.status(500);
+        res.json(err);
+      }
+      res.json(JSON.parse(data));
+      return next();
+    });
   });
 }
 
