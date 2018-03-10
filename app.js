@@ -1,6 +1,7 @@
 const restify = require('restify');
 const plugins = require('restify-plugins');
 const logger = require('morgan');
+const colorJson = require('color-json');
 const fs = require('fs');
 
 const server = restify.createServer({
@@ -19,6 +20,11 @@ server.use(
 );
 server.use(logger('dev'));
 
+server.use(function reqBodyLog(req, res, next) {
+  if (typeof req.body !== 'undefined') console.log(colorJson(req.body));
+  return next();
+});
+
 function addRoute(path, method = 'GET', inputFile = `./fixtures${path}.json`) {
   server[method.toLowerCase()](path, function (req, res, next) {
     res.setHeader('Content-Type', 'application/json');
@@ -34,7 +40,6 @@ function addRoute(path, method = 'GET', inputFile = `./fixtures${path}.json`) {
 }
 
 // ADD ROUTES HERE
-
 
 server.listen(8080, function () {
   console.log('%s listening at %s', server.name, server.url);
